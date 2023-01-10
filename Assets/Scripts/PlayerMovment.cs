@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class PlayerMovment : MonoBehaviour
 {
+    [SerializeField]
+    private float movespeed;
+
     // Start is called before the first frame update
     void Start()
     {
