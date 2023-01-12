@@ -20,13 +20,7 @@ public class PlayerMagnet : MonoBehaviour
     {
         if(m_magnetActive) 
         {
-            /*
-            foreach(Collider collider in m_colliders)
-            {
-                collider.GetComponent<IsMagnetic>()?.isBeingMagnetic(m_Player.transform.position, m_directionOfMagnet,m_Player.GetComponent<PlayerMovment>());
-
-            }
-            */
+           
             RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, Vector2.right,m_magnetPower);
             foreach(RaycastHit2D hit in hits)
             {
