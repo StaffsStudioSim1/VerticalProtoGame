@@ -863,7 +863,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 3
+  orthographic size: 6.51344
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -902,6 +902,26 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1099811130490215554, guid: 7c7782bf5ece7e1458cfdfef025a6968, type: 3}
+      propertyPath: m_Size.x
+      value: 0.42
+      objectReference: {fileID: 0}
+    - target: {fileID: 1099811130490215554, guid: 7c7782bf5ece7e1458cfdfef025a6968, type: 3}
+      propertyPath: m_Size.y
+      value: 0.14
+      objectReference: {fileID: 0}
+    - target: {fileID: 1099811130490215554, guid: 7c7782bf5ece7e1458cfdfef025a6968, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 1099811130490215554, guid: 7c7782bf5ece7e1458cfdfef025a6968, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.62
+      objectReference: {fileID: 0}
+    - target: {fileID: 1099811130490215557, guid: 7c7782bf5ece7e1458cfdfef025a6968, type: 3}
+      propertyPath: midAirControlDelay
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 1099811130490215560, guid: 7c7782bf5ece7e1458cfdfef025a6968, type: 3}
       propertyPath: m_RootOrder
       value: 2
