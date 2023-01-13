@@ -9,7 +9,7 @@ public class PlayerMagnet : MonoBehaviour
 {
     GameObject m_Player;
     bool m_magnetActive;
-    [SerializeField] directionOfMagnet m_directionOfMagnet;
+    [SerializeField] public directionOfMagnet m_directionOfMagnet;
     [FormerlySerializedAs("m_magnetPower")] public float m_magnetPowerLength;
 
     private void Awake()
