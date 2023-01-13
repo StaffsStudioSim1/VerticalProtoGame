@@ -6,7 +6,7 @@ using UnityEngine;
 public class MagneticBox : MonoBehaviour , IsMagnetic
 {
     Rigidbody2D m_rigidbody;
-    [SerializeField] float m_pushForce = 1;
+    [SerializeField] float m_pushForce = 10;
 
     public void isBeingMagnetic(Vector2 pushingPlayerPos, directionOfMagnet forceDirection, PlayerMovment player)
     {

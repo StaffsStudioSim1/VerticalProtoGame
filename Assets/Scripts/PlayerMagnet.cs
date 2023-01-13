@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 
 public class PlayerMagnet : MonoBehaviour
 {
     GameObject m_Player;
     bool m_magnetActive;
     [SerializeField] directionOfMagnet m_directionOfMagnet;
-    public float m_magnetPower;
+    [FormerlySerializedAs("m_magnetPower")] public float m_magnetPowerLength;
 
     private void Awake()
     {
@@ -21,13 +22,14 @@ public class PlayerMagnet : MonoBehaviour
         if(m_magnetActive) 
         {
            
-            RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, Vector2.right,m_magnetPower);
+            RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, Vector2.right,m_magnetPowerLength);
             foreach(RaycastHit2D hit in hits)
             {
                 if(hit.transform.GetComponent<IsMagnetic>() != null)
                 {
                     Debug.Log(hit.transform.name);
-                    hit.transform.GetComponent<IsMagnetic>()?.isBeingMagnetic(transform.position,m_directionOfMagnet,transform.GetComponent<PlayerMovment>());
+                    hit.transform.GetComponent<IsMagnetic>()?.isBeingMagnetic(transform.position,m_directionOfMagnet,
+                        transform.GetComponent<PlayerMovment>());
                 }
             }
         }
@@ -50,7 +52,7 @@ public class PlayerMagnet : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Vector2 direction = transform.TransformDirection(Vector2.right) * m_magnetPower;
+        Vector2 direction = transform.TransformDirection(Vector2.right) * m_magnetPowerLength;
 
         Gizmos.DrawRay(transform.position, direction);
     }

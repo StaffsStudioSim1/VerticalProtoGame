@@ -141,7 +141,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_directionOfMagnet: 1
-  m_magnetPower: 3
+  m_magnetPowerLength: 3
 --- !u!1 &503267490
 GameObject:
   m_ObjectHideFlags: 0
@@ -891,7 +891,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82c83839cb5f326408e4b625a618a040, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_pushForce: 1
+  m_pushForce: 10
 --- !u!50 &1450521257
 Rigidbody2D:
   serializedVersion: 4
