@@ -13,11 +13,12 @@ public class MagneticBox : MonoBehaviour , IsMagnetic
        switch (forceDirection) {
             case directionOfMagnet.TOWARDS:
 
-                m_rigidbody.AddForce((pushingPlayerPos - (Vector2)transform.position)*m_pushForce,ForceMode2D.Impulse);
+                m_rigidbody.AddForce((pushingPlayerPos - (Vector2)transform.position)*m_pushForce,ForceMode2D.Force);
 
                 break;
             case directionOfMagnet.AWAY: 
-                m_rigidbody.AddForce(-(pushingPlayerPos - (Vector2)transform.position)*m_pushForce,ForceMode2D.Impulse);
+                
+                m_rigidbody.AddForce(-(pushingPlayerPos - (Vector2)transform.position)*m_pushForce,ForceMode2D.Force);
 
                 break;
                 default:
