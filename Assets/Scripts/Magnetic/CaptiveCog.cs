@@ -8,7 +8,7 @@ public class CaptiveCog : MonoBehaviour , IsMagnetic
     [SerializeField] Transform m_limitRight;
 
     /*public void isBeingMagnetic(Vector2 pushingPlayerPos, Vector2 forceApplied,
-        PlayerMovment player)
+        PlayerMovement player)
     {
         if (forceApplied.y < 0)
         {
@@ -27,7 +27,7 @@ public class CaptiveCog : MonoBehaviour , IsMagnetic
         }
     }
     */
-    public void isBeingMagnetic(Vector2 pushingPlayerPos, directionOfMagnet forceDirection, PlayerMovment player)
+    public void isBeingMagnetic(Vector2 pushingPlayerPos, directionOfMagnet forceDirection, PlayerMovement player)
     {
         throw new System.NotImplementedException();
     }

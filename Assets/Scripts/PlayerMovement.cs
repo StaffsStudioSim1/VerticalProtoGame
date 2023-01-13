@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerMovment : MonoBehaviour
+public class PlayerMovement : MonoBehaviour
 {
     //serialized fields
     [SerializeField]
@@ -45,6 +45,15 @@ public class PlayerMovment : MonoBehaviour
         }       
     }
 
+    public void Interact(InputAction.CallbackContext context)
+    {
+        Debug.Log("Interact button pressed");
+    }    
+    
+    public void Magnet(InputAction.CallbackContext context)
+    {
+        Debug.Log("Magnet button pressed");
+    }
 
 
     private void OnTriggerEnter2D(Collider2D collision)

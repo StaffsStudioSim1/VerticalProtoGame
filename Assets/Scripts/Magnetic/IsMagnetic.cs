@@ -4,7 +4,7 @@ using UnityEngine;
 
 public interface IsMagnetic
 {
-    void isBeingMagnetic(Vector2 pushingPlayerPos, directionOfMagnet forceDirection, PlayerMovment player);
+    void isBeingMagnetic(Vector2 pushingPlayerPos, directionOfMagnet forceDirection, PlayerMovement player);
 
 
 }

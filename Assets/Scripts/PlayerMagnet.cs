@@ -29,7 +29,8 @@ public class PlayerMagnet : MonoBehaviour
                 {
                     Debug.Log(hit.transform.name);
                     hit.transform.GetComponent<IsMagnetic>()?.isBeingMagnetic(transform.position,m_directionOfMagnet,
-                        transform.GetComponent<PlayerMovment>());
+                        transform.GetComponent<PlayerMovement>());
+                    hit.transform.GetComponent<IsMagnetic>()?.isBeingMagnetic(transform.position,m_directionOfMagnet,transform.GetComponent<PlayerMovement>());
                 }
             }
         }
