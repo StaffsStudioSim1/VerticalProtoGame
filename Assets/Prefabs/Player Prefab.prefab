@@ -11,10 +11,11 @@ GameObject:
   - component: {fileID: 1099811130490215560}
   - component: {fileID: 1099811130490215561}
   - component: {fileID: 1099811130490215559}
-  - component: {fileID: 1099811130490215557}
+  - component: {fileID: 3406622936131520748}
   - component: {fileID: 1099811130490215556}
   - component: {fileID: 1099811130490215555}
   - component: {fileID: 1099811130490215554}
+  - component: {fileID: 4825775562633554022}
   m_Layer: 0
   m_Name: Player Prefab
   m_TagString: Untagged
@@ -35,7 +36,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1099811130490215561
 SpriteRenderer:
@@ -110,7 +111,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!114 &1099811130490215557
+--- !u!114 &3406622936131520748
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -119,7 +120,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1099811130490215563}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 77cfc36e9745f614e8eca3ca0ec6dc4c, type: 3}
+  m_Script: {fileID: 11500000, guid: 691a9f22c5dd5444993b97a2eadeef10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 10
@@ -153,8 +154,8 @@ MonoBehaviour:
   m_ActionEvents:
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1099811130490215557}
-        m_TargetAssemblyTypeName: PlayerMovment, Assembly-CSharp
+      - m_Target: {fileID: 3406622936131520748}
+        m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
         m_MethodName: Move
         m_Mode: 0
         m_Arguments:
@@ -169,8 +170,8 @@ MonoBehaviour:
     m_ActionName: Player1/Move[/Keyboard/a,/Keyboard/d]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1099811130490215557}
-        m_TargetAssemblyTypeName: PlayerMovment, Assembly-CSharp
+      - m_Target: {fileID: 3406622936131520748}
+        m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
         m_MethodName: Jump
         m_Mode: 0
         m_Arguments:
@@ -184,27 +185,99 @@ MonoBehaviour:
     m_ActionId: 14c71a3d-4235-4e1e-83b2-bb76975ed700
     m_ActionName: Player1/Jump[/Keyboard/w]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3406622936131520748}
+        m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
+        m_MethodName: Interact
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 98301c50-7d1d-4be6-b04a-dfd2e2b0ad27
     m_ActionName: Player1/Interact[/Keyboard/e]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4825775562633554022}
+        m_TargetAssemblyTypeName: PlayerMagnet, Assembly-CSharp
+        m_MethodName: MagnetButton
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 59aec1eb-5bd4-41e4-814b-4c1f49b7ea42
     m_ActionName: Player1/Magnet[/Keyboard/q]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3406622936131520748}
+        m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
+        m_MethodName: Move
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 8a503451-80c6-441e-88c3-a828bdcdc72d
     m_ActionName: Player2/Move[/Keyboard/a,/Keyboard/d]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3406622936131520748}
+        m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
+        m_MethodName: Jump
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 845e63ae-382f-49b3-a950-b33733bd3655
     m_ActionName: Player2/Jump[/Keyboard/upArrow]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3406622936131520748}
+        m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
+        m_MethodName: Interact
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: b40af51e-8de3-434c-a8dc-9a4219186819
     m_ActionName: Player2/Interact[/Keyboard/rightCtrl]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4825775562633554022}
+        m_TargetAssemblyTypeName: PlayerMagnet, Assembly-CSharp
+        m_MethodName: MagnetButton
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 46ea501d-d113-4a90-bee7-2041b7364225
     m_ActionName: Player2/Magnet[/Keyboard/rightShift]
   m_NeverAutoSwitchControlSchemes: 0
@@ -254,3 +327,17 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.54, y: 0.2}
   m_EdgeRadius: 0
+--- !u!114 &4825775562633554022
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1099811130490215563}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4061746cb12ff240870d7edd33225e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_directionOfMagnet: 0
+  m_magnetPowerLength: 3
