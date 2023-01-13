@@ -140,7 +140,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4061746cb12ff240870d7edd33225e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_directionOfMagnet: 0
+  m_directionOfMagnet: 1
   m_magnetPower: 3
 --- !u!1 &503267490
 GameObject:
