@@ -341,5 +341,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_directionOfMagnet: 0
-  m_magnetPowerLength: 1.7
-  m_boxSize: {x: 2.45, y: 2}
+  m_magnetPowerLength: 1.65
+  m_boxSize: {x: 2.44, y: 2}

@@ -29,6 +29,7 @@ public class CaptiveCog : MonoBehaviour , IsMagnetic
     */
     public void isBeingMagnetic(Vector2 pushingPlayerPos, directionOfMagnet forceDirection, PlayerMovement player)
     {
+        Debug.Log("Needs to be done");
         throw new System.NotImplementedException();
     }
 

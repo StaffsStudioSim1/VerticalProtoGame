@@ -39,12 +39,12 @@ public class PlayerMagnet : MonoBehaviour
         if(context.started)
         {
             m_magnetActive = true;
-            Debug.Log("MAgent on");
+            Debug.Log("Magent on");
         }
         if(context.canceled)
         {
             m_magnetActive = false;
-            Debug.Log("MAgent off");
+            Debug.Log("Magent off");
 
         }
     }
