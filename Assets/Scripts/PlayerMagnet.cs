@@ -11,6 +11,7 @@ public class PlayerMagnet : MonoBehaviour
     bool m_magnetActive;
     [SerializeField] public directionOfMagnet m_directionOfMagnet;
     [FormerlySerializedAs("m_magnetPower")] public float m_magnetPowerLength;
+    [SerializeField] Vector2 m_boxSize;
 
     private void Awake()
     {
@@ -21,19 +22,11 @@ public class PlayerMagnet : MonoBehaviour
     {
         if(m_magnetActive) 
         {
-            List<RaycastHit2D> hitList = new List<RaycastHit2D>();
-            RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, Vector2.right,m_magnetPowerLength);
-            hitList.AddRange(hits);
-            hits = Physics2D.RaycastAll(transform.position, Vector2.right + Vector2.down, m_magnetPowerLength);
-            foreach (RaycastHit2D hit in hits)
-            {
-                if (!hitList.Contains(hit))
-                {
-                    hitList.Add(hit);  
-                }
-            }
+            
+            RaycastHit2D[] hits = Physics2D.BoxCastAll(transform.position, m_boxSize, 0f, Vector2.right,m_magnetPowerLength);
+           
 
-               foreach (RaycastHit2D hit in hitList)
+               foreach (RaycastHit2D hit in hits)
             {
                 hit.transform.GetComponent<IsMagnetic>()?.isBeingMagnetic(transform.position,m_directionOfMagnet,transform.GetComponent<PlayerMovement>());                                  
             }
@@ -59,9 +52,9 @@ public class PlayerMagnet : MonoBehaviour
     {
         Gizmos.color = Color.red;
         Vector2 direction = transform.TransformDirection(Vector2.right) * m_magnetPowerLength;
-        Vector2 direction2 = transform.TransformDirection(Vector2.right + new Vector2(0,-0.3f)) * (m_magnetPowerLength / 1.2f);
+        
         Gizmos.DrawRay(transform.position, direction);
-        Gizmos.DrawRay(transform.position, direction2);
+        Gizmos.DrawWireCube(transform.position + (Vector3)Vector2.right * m_magnetPowerLength, m_boxSize);
     }
 
 }
