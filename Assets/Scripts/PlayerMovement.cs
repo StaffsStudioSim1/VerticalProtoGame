@@ -5,6 +5,9 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
+    //public fields
+    public bool Flipped;
+
     //serialized fields
     [SerializeField]
     [Min(1)]
@@ -38,10 +41,18 @@ public class PlayerMovement : MonoBehaviour
     public void Jump(InputAction.CallbackContext context)
     {
         if (jumpReset == true)
-        {    
-            // add jump force if jump is available
-           rb.AddForce(jumpForce);
-           jumpReset = false; //prevents multiple jumps
+        {
+            if (!Flipped)
+            {
+                // add jump force if jump is available
+                rb.AddForce(jumpForce);
+            }
+            else
+            {
+                // add -jump force if jump is available
+                rb.AddForce(-jumpForce);
+            }
+            jumpReset = false; //prevents multiple jumps
         }       
     }
 
@@ -63,11 +74,6 @@ public class PlayerMovement : MonoBehaviour
         Debug.Log("jump reset");
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
 
     private void FixedUpdate()
     {
