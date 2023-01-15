@@ -62,8 +62,8 @@ public class PlayerMovement : MonoBehaviour
                 rb.AddForce(-jumpForce);
             }
             jumpReset = false; //prevents multiple jumps       
-        { isJumping = true; }
-    }
+            isJumping = true;
+        }
         //sets player to jump        
     }
 
@@ -75,8 +75,8 @@ public class PlayerMovement : MonoBehaviour
     public void Interact(InputAction.CallbackContext context)
     {
         Debug.Log("Interact button pressed");
-    }    
-    
+    }
+
     public void Magnet(InputAction.CallbackContext context)
     {
         Debug.Log("Magnet button pressed");
