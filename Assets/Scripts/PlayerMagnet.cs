@@ -23,10 +23,10 @@ public class PlayerMagnet : MonoBehaviour
         if(m_magnetActive) 
         {
             
-            RaycastHit2D[] hits = Physics2D.BoxCastAll(transform.position, m_boxSize, 0f, Vector2.right,m_magnetPowerLength);
+            RaycastHit2D[] hits = Physics2D.BoxCastAll(transform.position + (Vector3)Vector2.right * m_magnetPowerLength, m_boxSize, 0f, Vector2.right,0);
            
 
-               foreach (RaycastHit2D hit in hits)
+            foreach (RaycastHit2D hit in hits)
             {
                 hit.transform.GetComponent<IsMagnetic>()?.isBeingMagnetic(transform.position,m_directionOfMagnet,transform.GetComponent<PlayerMovement>());                                  
             }
