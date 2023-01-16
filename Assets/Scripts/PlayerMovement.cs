@@ -50,20 +50,7 @@ public class PlayerMovement : MonoBehaviour
     public void Jump(InputAction.CallbackContext context)
     {
         if (jumpReset == true)
-        {
-            if (!Flipped)
-            {
-                // add jump force if jump is available
-                rb.AddForce(jumpForce);
-            }
-            else
-            {
-                // add -jump force if jump is available
-                rb.AddForce(-jumpForce);
-            }
-            jumpReset = false; //prevents multiple jumps       
-            isJumping = true;
-        }
+        { isJumping = true; }
         //sets player to jump        
     }
 
@@ -122,15 +109,30 @@ public class PlayerMovement : MonoBehaviour
 
         if (isJumping)
         {
-            //if player is falling before they jump then this cancels out their velocity
-            float currentVelocity = new();
-            currentVelocity = rb.velocity.y;
+            if (!Flipped)
+            {
+                float currentVelocity = new();
+                currentVelocity = rb.velocity.y;
 
-            jumpForce.y += -currentVelocity;
+                jumpForce.y += -currentVelocity;
 
-            //stops jump after adding jumpforce
-            rb.AddForce(jumpForce);
-            isJumping = false;
+                //stops jump after adding jumpforce
+                rb.AddForce(jumpForce);
+                isJumping = false;
+                //if player is falling before they jump then this cancels out their velocity
+            }
+            else
+            {
+                float currentVelocity = new();
+                currentVelocity = -rb.velocity.y;
+
+                jumpForce.y += -currentVelocity;
+
+                //stops jump after adding jumpforce
+                rb.AddForce(-jumpForce);
+                isJumping = false;
+                //if player is falling before they jump then this cancels out their velocity
+            }
         }
     }
 }
