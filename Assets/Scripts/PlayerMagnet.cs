@@ -24,7 +24,7 @@ public class PlayerMagnet : MonoBehaviour
     {
         if(m_magnetActive) 
         {
-            
+          
             RaycastHit2D[] hits = Physics2D.BoxCastAll(transform.position + (Vector3)m_facingVector * m_magnetPowerLength, m_boxSize, 0f, Vector2.right,0);
            
             
