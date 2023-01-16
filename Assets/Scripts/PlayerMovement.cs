@@ -74,11 +74,6 @@ public class PlayerMovement : MonoBehaviour
         jumpReset = false;  //prevents multiple jumps
     }
 
-    public void Interact(InputAction.CallbackContext context)
-    {
-        Debug.Log("Interact button pressed");
-    }
-
     public void Magnet(InputAction.CallbackContext context)
     {
         Debug.Log("Magnet button pressed");
