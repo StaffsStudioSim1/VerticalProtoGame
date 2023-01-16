@@ -5,8 +5,6 @@ using UnityEngine;
 public interface IsMagnetic
 {
     void isBeingMagnetic(Vector2 pushingPlayerPos, directionOfMagnet forceDirection, PlayerMovement player);
-
-
 }
 
 

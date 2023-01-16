@@ -130,6 +130,7 @@ MonoBehaviour:
   jumpForce: {x: 0, y: 400}
   midAirControlDelay: 0
   groundDetector: {fileID: 1099811130490215554}
+  m_playerMagnet: {fileID: 4825775562633554022}
 --- !u!114 &1099811130490215556
 MonoBehaviour:
   m_ObjectHideFlags: 0
