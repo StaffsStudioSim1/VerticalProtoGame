@@ -9,53 +9,82 @@ public class PlayerMagnet : MonoBehaviour
 {
     GameObject m_Player;
     bool m_magnetActive;
-    [SerializeField] directionOfMagnet m_directionOfMagnet;
+    [SerializeField] public directionOfMagnet m_directionOfMagnet;
     [FormerlySerializedAs("m_magnetPower")] public float m_magnetPowerLength;
+    [SerializeField] Vector2 m_boxSize;
+    Vector2 m_facingVector = Vector2.right;
 
     private void Awake()
     {
         m_magnetActive = false;
+        
     }
 
     private void FixedUpdate()
     {
         if(m_magnetActive) 
         {
+            
+            RaycastHit2D[] hits = Physics2D.BoxCastAll(transform.position + (Vector3)m_facingVector * m_magnetPowerLength, m_boxSize, 0f, Vector2.right,0);
            
-            RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, Vector2.right,m_magnetPowerLength);
-            foreach(RaycastHit2D hit in hits)
+            
+            foreach (RaycastHit2D hit in hits)
             {
-                if(hit.transform.GetComponent<IsMagnetic>() != null)
-                {
-                    Debug.Log(hit.transform.name);
-                    hit.transform.GetComponent<IsMagnetic>()?.isBeingMagnetic(transform.position,m_directionOfMagnet,
-                        transform.GetComponent<PlayerMovement>());
-                    hit.transform.GetComponent<IsMagnetic>()?.isBeingMagnetic(transform.position,m_directionOfMagnet,transform.GetComponent<PlayerMovement>());
-                }
+                hit.transform.GetComponent<IsMagnetic>()?.isBeingMagnetic(transform.position,m_directionOfMagnet,transform.GetComponent<PlayerMovement>());                                  
             }
+            
         }
     }
 
-    public void MagnetButton(InputAction.CallbackContext context)
+    public void ChangeDirection(FaceingDirection direction)
+    {
+        switch (direction)
+        {
+            case FaceingDirection.LEFT:
+                m_facingVector = -Vector2.right;
+                break;
+            case FaceingDirection.RIGHT:
+                m_facingVector = Vector2.right;
+                break;
+            default:
+                Debug.Log("ChangeDirection failed in player magnet");
+                break;
+        }
+    }
+
+        public void MagnetButton(InputAction.CallbackContext context)
     {
         if(context.started)
         {
             m_magnetActive = true;
-            Debug.Log("MAgent on");
+            Debug.Log("Magent on");
         }
         if(context.canceled)
         {
             m_magnetActive = false;
-            Debug.Log("MAgent off");
+            Debug.Log("Magent off");
 
         }
     }
     private void OnDrawGizmos()
     {
-        Gizmos.color = Color.red;
-        Vector2 direction = transform.TransformDirection(Vector2.right) * m_magnetPowerLength;
-
+        switch(m_directionOfMagnet)
+        {
+            case directionOfMagnet.TOWARDS:
+                Gizmos.color = Color.red;
+                break;
+            case directionOfMagnet.AWAY:
+                Gizmos.color = Color.green;
+                break;
+            default:
+                Gizmos.color = Color.black;
+                break;
+        }
+        Vector2 direction = transform.TransformDirection(m_facingVector) * m_magnetPowerLength;
+        
         Gizmos.DrawRay(transform.position, direction);
+        Gizmos.DrawWireCube(transform.position + (Vector3)m_facingVector * m_magnetPowerLength, m_boxSize);
     }
 
+    
 }

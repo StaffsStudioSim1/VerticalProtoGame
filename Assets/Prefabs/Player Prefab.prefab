@@ -124,10 +124,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 691a9f22c5dd5444993b97a2eadeef10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Flipped: 0
   moveSpeed: 10
   m_topSpeed: 5
   jumpForce: {x: 0, y: 400}
+  midAirControlDelay: 0
   groundDetector: {fileID: 1099811130490215554}
+  m_playerMagnet: {fileID: 4825775562633554022}
 --- !u!114 &1099811130490215556
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -341,7 +344,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_directionOfMagnet: 0
-  m_magnetPowerLength: 3
+  m_magnetPowerLength: 1.65
+  m_boxSize: {x: 2.45, y: 2}
 --- !u!1 &2060129593872192225
 GameObject:
   m_ObjectHideFlags: 0
