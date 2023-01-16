@@ -12,10 +12,12 @@ public class PlayerMagnet : MonoBehaviour
     [SerializeField] public directionOfMagnet m_directionOfMagnet;
     [FormerlySerializedAs("m_magnetPower")] public float m_magnetPowerLength;
     [SerializeField] Vector2 m_boxSize;
+    Vector2 m_facingVector = Vector2.right;
 
     private void Awake()
     {
         m_magnetActive = false;
+        
     }
 
     private void FixedUpdate()
@@ -23,9 +25,9 @@ public class PlayerMagnet : MonoBehaviour
         if(m_magnetActive) 
         {
             
-            RaycastHit2D[] hits = Physics2D.BoxCastAll(transform.position + (Vector3)Vector2.right * m_magnetPowerLength, m_boxSize, 0f, Vector2.right,0);
+            RaycastHit2D[] hits = Physics2D.BoxCastAll(transform.position + (Vector3)m_facingVector * m_magnetPowerLength, m_boxSize, 0f, Vector2.right,0);
            
-
+            
             foreach (RaycastHit2D hit in hits)
             {
                 hit.transform.GetComponent<IsMagnetic>()?.isBeingMagnetic(transform.position,m_directionOfMagnet,transform.GetComponent<PlayerMovement>());                                  
@@ -34,7 +36,23 @@ public class PlayerMagnet : MonoBehaviour
         }
     }
 
-    public void MagnetButton(InputAction.CallbackContext context)
+    public void ChangeDirection(FaceingDirection direction)
+    {
+        switch (direction)
+        {
+            case FaceingDirection.LEFT:
+                m_facingVector = -Vector2.right;
+                break;
+            case FaceingDirection.RIGHT:
+                m_facingVector = Vector2.right;
+                break;
+            default:
+                Debug.Log("ChangeDirection failed in player magnet");
+                break;
+        }
+    }
+
+        public void MagnetButton(InputAction.CallbackContext context)
     {
         if(context.started)
         {
@@ -50,11 +68,23 @@ public class PlayerMagnet : MonoBehaviour
     }
     private void OnDrawGizmos()
     {
-        Gizmos.color = Color.red;
-        Vector2 direction = transform.TransformDirection(Vector2.right) * m_magnetPowerLength;
+        switch(m_directionOfMagnet)
+        {
+            case directionOfMagnet.TOWARDS:
+                Gizmos.color = Color.red;
+                break;
+            case directionOfMagnet.AWAY:
+                Gizmos.color = Color.green;
+                break;
+            default:
+                Gizmos.color = Color.black;
+                break;
+        }
+        Vector2 direction = transform.TransformDirection(m_facingVector) * m_magnetPowerLength;
         
         Gizmos.DrawRay(transform.position, direction);
-        Gizmos.DrawWireCube(transform.position + (Vector3)Vector2.right * m_magnetPowerLength, m_boxSize);
+        Gizmos.DrawWireCube(transform.position + (Vector3)m_facingVector * m_magnetPowerLength, m_boxSize);
     }
 
+    
 }
