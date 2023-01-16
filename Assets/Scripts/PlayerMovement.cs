@@ -5,6 +5,9 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
+    //public fields
+    public bool Flipped;
+
     //serialized fields
     [SerializeField]
     [Min(1)]
@@ -59,8 +62,8 @@ public class PlayerMovement : MonoBehaviour
     public void Interact(InputAction.CallbackContext context)
     {
         Debug.Log("Interact button pressed");
-    }    
-    
+    }
+
     public void Magnet(InputAction.CallbackContext context)
     {
         Debug.Log("Magnet button pressed");
@@ -106,15 +109,30 @@ public class PlayerMovement : MonoBehaviour
 
         if (isJumping)
         {
-            //if player is falling before they jump then this cancels out their velocity
-            float currentVelocity = new();
-            currentVelocity = rb.velocity.y;
+            if (!Flipped)
+            {
+                float currentVelocity = new();
+                currentVelocity = rb.velocity.y;
 
-            jumpForce.y += -currentVelocity;
+                jumpForce.y += -currentVelocity;
 
-            //stops jump after adding jumpforce
-            rb.AddForce(jumpForce);
-            isJumping = false;
+                //stops jump after adding jumpforce
+                rb.AddForce(jumpForce);
+                isJumping = false;
+                //if player is falling before they jump then this cancels out their velocity
+            }
+            else
+            {
+                float currentVelocity = new();
+                currentVelocity = -rb.velocity.y;
+
+                jumpForce.y += -currentVelocity;
+
+                //stops jump after adding jumpforce
+                rb.AddForce(-jumpForce);
+                isJumping = false;
+                //if player is falling before they jump then this cancels out their velocity
+            }
         }
     }
 }
