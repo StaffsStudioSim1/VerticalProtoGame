@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
             input.defaultActionMap = "Player2";
             input.SwitchCurrentActionMap("Player2");
             initPlayer.GetComponent<SpriteRenderer>().color = Color.cyan;
+            initPlayer.GetComponent<PlayerMagnet>().m_directionOfMagnet = directionOfMagnet.AWAY;
         }
     }
 }

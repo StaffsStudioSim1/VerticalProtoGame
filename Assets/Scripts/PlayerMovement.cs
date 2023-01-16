@@ -26,6 +26,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     public BoxCollider2D groundDetector;
 
+    [SerializeField]
+    private PlayerMagnet m_playerMagnet;
+
     //private fields
     private bool jumpReset;
     private bool isJumping;
@@ -34,6 +37,8 @@ public class PlayerMovement : MonoBehaviour
 
     private bool movementEnabled = true;
     private float jumpTimer;
+
+    private FaceingDirection m_facting = FaceingDirection.RIGHT;
 
 
     // Start is called before the first frame update
@@ -45,6 +50,16 @@ public class PlayerMovement : MonoBehaviour
     public void Move(InputAction.CallbackContext context)
     {
         m_currentMove = context.ReadValue<Vector2>();
+        if(m_currentMove.x > 0)
+        {
+            m_facting = FaceingDirection.RIGHT;
+            m_playerMagnet.ChangeDirection(FaceingDirection.RIGHT);
+        }
+        if(m_currentMove.x < 0)
+        {
+            m_facting = FaceingDirection.LEFT;
+            m_playerMagnet.ChangeDirection(FaceingDirection.LEFT);
+        }
     }
 
     public void Jump(InputAction.CallbackContext context)
@@ -57,11 +72,6 @@ public class PlayerMovement : MonoBehaviour
     private void OnTriggerExit2D(Collider2D collision)
     {
         jumpReset = false;  //prevents multiple jumps
-    }
-
-    public void Interact(InputAction.CallbackContext context)
-    {
-        Debug.Log("Interact button pressed");
     }
 
     public void Magnet(InputAction.CallbackContext context)
@@ -135,4 +145,10 @@ public class PlayerMovement : MonoBehaviour
             }
         }
     }
+}
+
+public enum FaceingDirection
+{
+    LEFT,
+    RIGHT
 }

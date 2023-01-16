@@ -29,7 +29,8 @@ public class CaptiveCog : MonoBehaviour , IsMagnetic
     */
     public void isBeingMagnetic(Vector2 pushingPlayerPos, directionOfMagnet forceDirection, PlayerMovement player)
     {
-        throw new System.NotImplementedException();
+        Debug.Log("Needs to be done");
+        //throw new System.NotImplementedException();
     }
 
     // Start is called before the first frame update
