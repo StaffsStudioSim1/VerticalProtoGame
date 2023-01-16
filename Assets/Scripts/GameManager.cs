@@ -7,7 +7,6 @@ public class GameManager : MonoBehaviour
 {
     public List<GameObject> ActivePlayers;
 
-
     public void OnPlayerJoined(PlayerInput input)
     {
         GameObject initPlayer = input.gameObject;
