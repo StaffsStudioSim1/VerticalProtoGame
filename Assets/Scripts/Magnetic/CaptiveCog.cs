@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CaptiveCog : MonoBehaviour , IsMagnetic
+public class CaptiveCog : Cog , IsMagnetic
 {
     [SerializeField] Transform m_limitLeft;
     [SerializeField] Transform m_limitRight;
+    [SerializeField] Transform m_ActivatePoint;
     [SerializeField] [Range(0,1)] float m_moveSpeed;
 
     /*public void isBeingMagnetic(Vector2 pushingPlayerPos, Vector2 forceApplied,
@@ -56,5 +57,33 @@ public class CaptiveCog : MonoBehaviour , IsMagnetic
         }
     }
     
+    void FixedUpdate()
+    {
+        if (m_LastCog != null)
+        {
+            if ((m_firstCog || m_LastCog.m_rotating) && m_ActivatePoint.position == transform.position)
+            {
+                Rotating();
+            }
+            else if (!m_LastCog.m_rotating || m_ActivatePoint.position != transform.position)
+            {
+                NotRotating();
+
+            }
+        }
+        else
+        {
+            if ((m_firstCog) && m_ActivatePoint.position == transform.position)
+            {
+                Rotating();
+            }
+            else if (m_ActivatePoint.position == transform.position)
+            {
+                NotRotating();
+
+            }
+        }
+    }
+
 }
 

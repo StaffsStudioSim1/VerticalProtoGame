@@ -1,41 +1,52 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Cog : MonoBehaviour
 {
-    [SerializeField] bool m_firstCog;
-    [SerializeField] bool m_lastCog;
-    [SerializeField] Cog m_LastCog;
-    [SerializeField] Cog m_NextCog;
-    bool m_rotating;
-    [SerializeField] float m_rotateSpeed;
+    [SerializeField] protected bool m_firstCog;
+    [SerializeField] protected Cog m_LastCog;
+    [SerializeField] protected Cog m_NextCog;
+    public bool m_rotating;
+    [SerializeField] protected float m_rotateSpeed;
 
+    public UnityEvent m_active;
+    public UnityEvent m_deactive;
    
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        if(m_firstCog || m_LastCog.m_rotating)
+        if(m_firstCog ||(bool) m_LastCog?.m_rotating)
         {
-            if(!m_rotating)
-            {
-                m_rotating = true;
-            }
-            transform.rotation.Set(transform.rotation.x, transform.rotation.y, transform.rotation.z + m_rotateSpeed,transform.rotation.w);
+            Rotating();
         }
         else if(!m_LastCog.m_rotating)
         {
-            if (m_rotating)
-            {
-                m_rotating = false;
-            }
+           NotRotating();
            
-        }
-        
-        if(m_lastCog && m_rotating)
+        }       
+         
+    }
+
+    protected void Rotating()
+    {
+        if (!m_rotating)
         {
-              
+            m_rotating = true;
+            m_active?.Invoke();
+        }
+        //transform.rotation.Set(transform.rotation.x, transform.rotation.y, transform.rotation.z + m_rotateSpeed, transform.rotation.w);
+        transform.Rotate(Vector3.forward, m_rotateSpeed);
+    }
+
+    protected void NotRotating()
+    {
+        if (m_rotating)
+        {
+            m_rotating = false;
+            m_deactive?.Invoke();
         }
     }
 }

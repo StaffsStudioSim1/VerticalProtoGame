@@ -98,8 +98,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9341a0ea28dbd6741b676e2a7a1b86b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_firstCog: 0
+  m_LastCog: {fileID: 0}
+  m_NextCog: {fileID: 0}
+  m_rotating: 0
+  m_rotateSpeed: 0
+  m_active:
+    m_PersistentCalls:
+      m_Calls: []
+  m_deactive:
+    m_PersistentCalls:
+      m_Calls: []
   m_limitLeft: {fileID: 5417391137030737481}
   m_limitRight: {fileID: 559340368970178446}
+  m_ActivatePoint: {fileID: 0}
+  m_moveSpeed: 0.1
 --- !u!58 &7835578392832333307
 CircleCollider2D:
   m_ObjectHideFlags: 0
