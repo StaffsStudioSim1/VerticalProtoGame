@@ -5,7 +5,7 @@ using UnityEngine.Events;
 
 public class PressurePlate : MonoBehaviour
 {
-    [SerializeField] GameObject obJectToInteractWith;
+    [SerializeField] GameObject objectToInteractWith;
     private bool on;
     private int collisionCount;
     public UnityEvent m_Activated;
