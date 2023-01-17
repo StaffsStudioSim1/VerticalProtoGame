@@ -61,7 +61,7 @@ public class CaptiveCog : Cog , IsMagnetic
     {
         if (m_LastCog != null)
         {
-            if ((m_firstCog || m_LastCog.m_rotating) && m_ActivatePoint.position == transform.position)
+            if ((m_isFirstCog || m_LastCog.m_rotating) && m_ActivatePoint.position == transform.position)
             {
                 Rotating();
             }
@@ -73,7 +73,7 @@ public class CaptiveCog : Cog , IsMagnetic
         }
         else
         {
-            if ((m_firstCog) && m_ActivatePoint.position == transform.position)
+            if ((m_isFirstCog) && m_ActivatePoint.position == transform.position)
             {
                 Rotating();
             }
