@@ -2,10 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CaptiveCog : MonoBehaviour , IsMagnetic
+public class CaptiveCog : Cog , IsMagnetic
 {
     [SerializeField] Transform m_limitLeft;
     [SerializeField] Transform m_limitRight;
+    [SerializeField] Transform m_ActivatePoint;
+    [SerializeField] [Range(0,1)] float m_moveSpeed;
 
     /*public void isBeingMagnetic(Vector2 pushingPlayerPos, Vector2 forceApplied,
         PlayerMovement player)
@@ -29,21 +31,59 @@ public class CaptiveCog : MonoBehaviour , IsMagnetic
     */
     public void isBeingMagnetic(Vector2 pushingPlayerPos, directionOfMagnet forceDirection, PlayerMovement player)
     {
+        Vector2 forceApplied = (pushingPlayerPos - (Vector2)transform.position);
+        forceApplied.Normalize();
         Debug.Log("Needs to be done");
-        //throw new System.NotImplementedException();
-    }
+        if (forceApplied.x < 0)
+        {
+            //move left untill stop point
+            if(forceDirection == directionOfMagnet.TOWARDS)
+                gameObject.transform.position = Vector3.Lerp(transform.position, m_limitLeft.position, m_moveSpeed);
+            else
+                gameObject.transform.position = Vector3.Lerp(transform.position, m_limitRight.position, m_moveSpeed);
+        }
+        else if (forceApplied.x > 0)
+        {
+            //move right untill stoped
+            if (forceDirection == directionOfMagnet.TOWARDS)
+            gameObject.transform.position = Vector3.Lerp(transform.position, m_limitRight.position, m_moveSpeed);
+            else
+                gameObject.transform.position = Vector3.Lerp(transform.position, m_limitLeft.position, m_moveSpeed);
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+        }
+        else
+        {
+            //no movemnt
+        }
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     
+    void FixedUpdate()
+    {
+        if (m_LastCog != null)
+        {
+            if ((m_isFirstCog || m_LastCog.m_rotating) && m_ActivatePoint.position == transform.position)
+            {
+                Rotating();
+            }
+            else if (!m_LastCog.m_rotating || m_ActivatePoint.position != transform.position)
+            {
+                NotRotating();
+
+            }
+        }
+        else
+        {
+            if ((m_isFirstCog) && m_ActivatePoint.position == transform.position)
+            {
+                Rotating();
+            }
+            else if (m_ActivatePoint.position == transform.position)
+            {
+                NotRotating();
+
+            }
+        }
+    }
+
 }
+

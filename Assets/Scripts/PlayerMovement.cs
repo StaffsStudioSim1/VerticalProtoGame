@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : MonoBehaviour, IsMagnetic
 {
     //public fields
     public bool Flipped;
@@ -50,12 +50,12 @@ public class PlayerMovement : MonoBehaviour
     public void Move(InputAction.CallbackContext context)
     {
         m_currentMove = context.ReadValue<Vector2>();
-        if(m_currentMove.x > 0)
+        if (m_currentMove.x > 0)
         {
             m_facting = FaceingDirection.RIGHT;
             m_playerMagnet.ChangeDirection(FaceingDirection.RIGHT);
         }
-        if(m_currentMove.x < 0)
+        if (m_currentMove.x < 0)
         {
             m_facting = FaceingDirection.LEFT;
             m_playerMagnet.ChangeDirection(FaceingDirection.LEFT);
@@ -143,6 +143,27 @@ public class PlayerMovement : MonoBehaviour
                 isJumping = false;
                 //if player is falling before they jump then this cancels out their velocity
             }
+        }
+    }
+
+    public void isBeingMagnetic(Vector2 pushingPlayerPos, directionOfMagnet forceDirection, PlayerMovement player)
+    {
+        switch (forceDirection)
+        {
+            case directionOfMagnet.TOWARDS:
+
+                rb.AddForce((pushingPlayerPos - (Vector2)transform.position) * 10, ForceMode2D.Force);
+
+                break;
+            case directionOfMagnet.AWAY:
+
+                rb.AddForce(-(pushingPlayerPos - (Vector2)transform.position) * 10, ForceMode2D.Force);
+
+                break;
+            default:
+                Debug.Log("Player: No Valid Push direction");
+                break;
+
         }
     }
 }

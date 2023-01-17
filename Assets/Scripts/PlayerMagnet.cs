@@ -24,10 +24,11 @@ public class PlayerMagnet : MonoBehaviour
     {
         if(m_magnetActive) 
         {
-            
+          
             RaycastHit2D[] hits = Physics2D.BoxCastAll(transform.position + (Vector3)m_facingVector * m_magnetPowerLength, m_boxSize, 0f, Vector2.right,0);
            
-            
+
+
             foreach (RaycastHit2D hit in hits)
             {
                 hit.transform.GetComponent<IsMagnetic>()?.isBeingMagnetic(transform.position,m_directionOfMagnet,transform.GetComponent<PlayerMovement>());                                  
@@ -35,6 +36,8 @@ public class PlayerMagnet : MonoBehaviour
             
         }
     }
+
+    
 
     public void ChangeDirection(FaceingDirection direction)
     {
@@ -84,6 +87,8 @@ public class PlayerMagnet : MonoBehaviour
         
         Gizmos.DrawRay(transform.position, direction);
         Gizmos.DrawWireCube(transform.position + (Vector3)m_facingVector * m_magnetPowerLength, m_boxSize);
+
+       
     }
 
     
