@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class LeverInteractable : MonoBehaviour, I_interactable
 {
@@ -14,6 +15,8 @@ public class LeverInteractable : MonoBehaviour, I_interactable
 
     private bool On = false;
 
+    public UnityEvent Activated;
+    public UnityEvent Deactivated;
 
     public void start()
     {
@@ -27,11 +30,13 @@ public class LeverInteractable : MonoBehaviour, I_interactable
         {
             On = false;
             sprite.color = endColor;
+            Activated.Invoke();
         }
         else
         {
             On = true;
             sprite.color = startColor;
+            Deactivated.Invoke();
         }
 
     }
