@@ -38,7 +38,7 @@ public class PlayerMovement : MonoBehaviour, IsMagnetic
     private bool movementEnabled = true;
     private float jumpTimer;
 
-    private FaceingDirection m_facting = FaceingDirection.RIGHT;
+    private FacingDirection m_facing = FacingDirection.RIGHT;
 
 
     // Start is called before the first frame update
@@ -52,13 +52,13 @@ public class PlayerMovement : MonoBehaviour, IsMagnetic
         m_currentMove = context.ReadValue<Vector2>();
         if (m_currentMove.x > 0)
         {
-            m_facting = FaceingDirection.RIGHT;
-            m_playerMagnet.ChangeDirection(FaceingDirection.RIGHT);
+            m_facing = FacingDirection.RIGHT;
+            m_playerMagnet.ChangeDirection(FacingDirection.RIGHT);
         }
         if (m_currentMove.x < 0)
         {
-            m_facting = FaceingDirection.LEFT;
-            m_playerMagnet.ChangeDirection(FaceingDirection.LEFT);
+            m_facing = FacingDirection.LEFT;
+            m_playerMagnet.ChangeDirection(FacingDirection.LEFT);
         }
     }
 
@@ -168,7 +168,7 @@ public class PlayerMovement : MonoBehaviour, IsMagnetic
     }
 }
 
-public enum FaceingDirection
+public enum FacingDirection
 {
     LEFT,
     RIGHT

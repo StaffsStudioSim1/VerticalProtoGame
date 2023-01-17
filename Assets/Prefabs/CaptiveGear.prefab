@@ -98,11 +98,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9341a0ea28dbd6741b676e2a7a1b86b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_firstCog: 0
+  m_isFirstCog: 0
   m_LastCog: {fileID: 0}
-  m_NextCog: {fileID: 0}
   m_rotating: 0
-  m_rotateSpeed: 0
+  m_rotateSpeed: 3
+  m_cogIndex: 0
   m_active:
     m_PersistentCalls:
       m_Calls: []

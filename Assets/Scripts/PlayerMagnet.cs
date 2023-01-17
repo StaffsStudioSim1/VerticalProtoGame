@@ -16,8 +16,7 @@ public class PlayerMagnet : MonoBehaviour
 
     private void Awake()
     {
-        m_magnetActive = false;
-        
+        m_magnetActive = false;   
     }
 
     private void FixedUpdate()
@@ -37,16 +36,14 @@ public class PlayerMagnet : MonoBehaviour
         }
     }
 
-    
-
-    public void ChangeDirection(FaceingDirection direction)
+    public void ChangeDirection(FacingDirection direction)
     {
         switch (direction)
         {
-            case FaceingDirection.LEFT:
+            case FacingDirection.LEFT:
                 m_facingVector = -Vector2.right;
                 break;
-            case FaceingDirection.RIGHT:
+            case FacingDirection.RIGHT:
                 m_facingVector = Vector2.right;
                 break;
             default:
@@ -87,9 +84,5 @@ public class PlayerMagnet : MonoBehaviour
         
         Gizmos.DrawRay(transform.position, direction);
         Gizmos.DrawWireCube(transform.position + (Vector3)m_facingVector * m_magnetPowerLength, m_boxSize);
-
-       
     }
-
-    
 }
