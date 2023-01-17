@@ -124,7 +124,11 @@ public class PlayerMovement : MonoBehaviour, IsMagnetic
                 float currentVelocity = new();
                 currentVelocity = rb.velocity.y;
 
-                jumpForce.y += -currentVelocity;
+                float tempJumpForce = new();
+
+                tempJumpForce = jumpForce.y;
+
+                tempJumpForce += -currentVelocity;
 
                 //stops jump after adding jumpforce
                 rb.AddForce(jumpForce);
@@ -136,7 +140,11 @@ public class PlayerMovement : MonoBehaviour, IsMagnetic
                 float currentVelocity = new();
                 currentVelocity = -rb.velocity.y;
 
-                jumpForce.y += -currentVelocity;
+                float tempJumpForce = new();
+
+                tempJumpForce = jumpForce.y;
+
+                tempJumpForce += -currentVelocity;
 
                 //stops jump after adding jumpforce
                 rb.AddForce(-jumpForce);

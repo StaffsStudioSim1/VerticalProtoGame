@@ -146,6 +146,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactionCollider: {fileID: 9064686051045901855}
+  interactables: []
 --- !u!114 &1099811130490215556
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -385,7 +386,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.95, y: 1.46}
+  m_Size: {x: 1.41, y: 1.46}
   m_EdgeRadius: 0
 --- !u!1 &2060129593872192225
 GameObject:
