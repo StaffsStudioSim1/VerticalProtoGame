@@ -21,6 +21,8 @@ public class LeverInteractable : MonoBehaviour, I_interactable
     public void start()
     {
         sprite = GetComponent<SpriteRenderer>();
+        sprite.color = endColor;
+        Deactivated.Invoke();
     }
 
     public void interact()
@@ -30,13 +32,13 @@ public class LeverInteractable : MonoBehaviour, I_interactable
         {
             On = false;
             sprite.color = endColor;
-            Activated.Invoke();
+            Deactivated.Invoke();
         }
         else
         {
             On = true;
             sprite.color = startColor;
-            Deactivated.Invoke();
+            Activated.Invoke();
         }
 
     }

@@ -360,8 +360,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_directionOfMagnet: 0
-  m_magnetPowerLength: 1.65
-  m_boxSize: {x: 2.45, y: 2}
+  m_magnetPowerLength: {x: 0.67, y: 0.43}
+  m_boxSize: {x: 2.55, y: 2.23}
 --- !u!61 &9064686051045901855
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -10,7 +10,7 @@ public class PlayerMagnet : MonoBehaviour
     GameObject m_Player;
     bool m_magnetActive;
     [SerializeField] public directionOfMagnet m_directionOfMagnet;
-    [FormerlySerializedAs("m_magnetPower")] public float m_magnetPowerLength;
+    [FormerlySerializedAs("m_magnetPower")] public Vector2 m_magnetPowerLength;
     [SerializeField] Vector2 m_boxSize;
     Vector2 m_facingVector = Vector2.right;
 
@@ -24,7 +24,7 @@ public class PlayerMagnet : MonoBehaviour
         if(m_magnetActive) 
         {
           
-            RaycastHit2D[] hits = Physics2D.BoxCastAll(transform.position + (Vector3)m_facingVector * m_magnetPowerLength, m_boxSize, 0f, Vector2.right,0);
+            RaycastHit2D[] hits = Physics2D.BoxCastAll(transform.position + (Vector3)(m_facingVector + m_magnetPowerLength), m_boxSize, 0f, Vector2.right,0);
            
 
 
@@ -80,9 +80,9 @@ public class PlayerMagnet : MonoBehaviour
                 Gizmos.color = Color.black;
                 break;
         }
-        Vector2 direction = transform.TransformDirection(m_facingVector) * m_magnetPowerLength;
+        Vector2 direction = transform.TransformDirection(m_facingVector + m_magnetPowerLength);
         
         Gizmos.DrawRay(transform.position, direction);
-        Gizmos.DrawWireCube(transform.position + (Vector3)m_facingVector * m_magnetPowerLength, m_boxSize);
+        Gizmos.DrawWireCube(transform.position + (Vector3)(m_facingVector + m_magnetPowerLength), m_boxSize);
     }
 }
