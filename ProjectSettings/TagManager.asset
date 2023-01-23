@@ -3,7 +3,8 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Puzzle
   layers:
   - Default
   - TransparentFX
@@ -40,4 +41,16 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Tilemap Background
+    uniqueID: 2077022099
+    locked: 0
+  - name: Tilemap Level Art Details
+    uniqueID: 1737949935
+    locked: 0
+  - name: Tilemap Level Colliders
+    uniqueID: 3954136239
+    locked: 0
+  - name: Player
+    uniqueID: 226868409
     locked: 0
