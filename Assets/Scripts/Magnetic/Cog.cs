@@ -52,7 +52,7 @@ public class Cog : MonoBehaviour
             m_rotating = true;
             m_active?.Invoke();
         }
-        //transform.rotation.Set(transform.rotation.x, transform.rotation.y, transform.rotation.z + m_rotateSpeed, transform.rotation.w);
+        
         if(m_cogIndex % 2 == 0)
         {
             transform.Rotate(Vector3.forward, m_rotateSpeed);
