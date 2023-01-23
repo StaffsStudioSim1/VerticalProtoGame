@@ -22,7 +22,6 @@ public class LeverInteractable : MonoBehaviour, I_interactable
     {
         sprite = GetComponent<SpriteRenderer>();
         sprite.color = endColor;
-        Deactivated.Invoke();
     }
 
     public void interact()
@@ -42,5 +41,4 @@ public class LeverInteractable : MonoBehaviour, I_interactable
         }
 
     }
-
 }

@@ -65,7 +65,9 @@ public class PlayerMovement : MonoBehaviour, IsMagnetic
     public void Jump(InputAction.CallbackContext context)
     {
         if (jumpReset == true)
-        { isJumping = true; }
+        {
+            isJumping = true;
+        }
         //sets player to jump        
     }
 
@@ -84,6 +86,8 @@ public class PlayerMovement : MonoBehaviour, IsMagnetic
     {
         //reset jump when player ground detector leaves the ground
         jumpReset = true;
+        jumpTimer = 0f;
+        isJumping = false;
         Debug.Log("jump reset");
     }
 
@@ -130,10 +134,7 @@ public class PlayerMovement : MonoBehaviour, IsMagnetic
 
                 tempJumpForce += -currentVelocity;
 
-                //stops jump after adding jumpforce
                 rb.AddForce(jumpForce);
-                isJumping = false;
-                //if player is falling before they jump then this cancels out their velocity
             }
             else
             {
@@ -142,15 +143,16 @@ public class PlayerMovement : MonoBehaviour, IsMagnetic
 
                 float tempJumpForce = new();
 
-                tempJumpForce = jumpForce.y;
+                tempJumpForce = -jumpForce.y;
 
-                tempJumpForce += -currentVelocity;
+                tempJumpForce += currentVelocity;
 
-                //stops jump after adding jumpforce
-                rb.AddForce(-jumpForce);
-                isJumping = false;
-                //if player is falling before they jump then this cancels out their velocity
+                rb.AddForce(new Vector2(0f, -jumpForce.y));
             }
+
+            //stops jump after adding jumpforce
+            //if player is falling before they jump then this cancels out their velocity
+            isJumping = false;
         }
     }
 
@@ -171,7 +173,6 @@ public class PlayerMovement : MonoBehaviour, IsMagnetic
             default:
                 Debug.Log("Player: No Valid Push direction");
                 break;
-
         }
     }
 }
