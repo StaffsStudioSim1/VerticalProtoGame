@@ -5,26 +5,30 @@ using UnityEngine;
 public class GravityFlip : MonoBehaviour
 {
     [SerializeField] private GameManager m_Manager;
-    private bool m_Flipped;
+    public bool isFlipped;
 
-    public void OnGravityButtonPressed()
+
+    public void EnableGravityFlip()
     {
-        if (!m_Flipped)
-        {
-            Physics2D.gravity = new Vector2(0f, 9.81f);
-            m_Flipped = true;
-        }
-        else
-        {
-            Physics2D.gravity = new Vector2(0f, -9.81f);
-            m_Flipped = false;
-        }
+        isFlipped = true;
+        Physics2D.gravity = new Vector2(0, 9.81f);
 
         foreach (var Player in m_Manager.ActivePlayers)
         {
-            Player.GetComponent<PlayerMovement>().Flipped = m_Flipped;
+            Player.GetComponent<PlayerMovement>().Flipped = isFlipped;
             Player.GetComponent<Transform>().Rotate(Vector3.forward, 180f);
         }
-        
+    }
+
+    public void DisableGravityFlip()
+    {
+        isFlipped = false;
+        Physics2D.gravity = new Vector2(0, -9.81f);
+
+        foreach (var Player in m_Manager.ActivePlayers)
+        {
+            Player.GetComponent<PlayerMovement>().Flipped = isFlipped;
+            Player.GetComponent<Transform>().Rotate(Vector3.forward, 180f);
+        }
     }
 }

@@ -156,6 +156,10 @@ public class PlayerMovement : MonoBehaviour, IsMagnetic
 
     public void isBeingMagnetic(Vector2 pushingPlayerPos, directionOfMagnet forceDirection, PlayerMovement player)
     {
+        if(player == this)
+        {
+            return;
+        }
         switch (forceDirection)
         {
             case directionOfMagnet.TOWARDS:
