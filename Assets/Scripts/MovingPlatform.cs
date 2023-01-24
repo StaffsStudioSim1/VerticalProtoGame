@@ -17,6 +17,7 @@ public class MovingPlatform : MonoBehaviour
     [Header("PlayerEntrapment")]
     [SerializeField] Vector2 m_boxSize;
     [SerializeField] Vector2 m_boxCenter;
+    [SerializeField] List<GameObject> m_PlayersTrapped;
 
     // Start is called before the first frame update
     void Start()
@@ -50,25 +51,11 @@ public class MovingPlatform : MonoBehaviour
                 }
             }
             Vector3 endPos = transform.position;
-            UpdatePlayer(endPos - startPos);
+            
         }
     }
 
-    void UpdatePlayer(Vector3 moveVector)
-    {
-        RaycastHit2D[] hits = Physics2D.BoxCastAll((Vector2)transform.position + m_boxCenter, m_boxSize, 0f,Vector2.one);
-
-        foreach(RaycastHit2D hit in hits)
-        {
-            if(hit.transform.GetComponent<PlayerMovement>() != null)
-            {
-                PlayerMovement player = hit.transform.GetComponent<PlayerMovement>();
-                Vector3 newPos = player.transform.position + moveVector;
-                player.transform.position.Set(newPos.x,newPos.y,newPos.z);
-            }
-        }
-    }
-
+   
     public void Activate()
     {
         m_moving = m_lastDirection;
@@ -86,6 +73,27 @@ public class MovingPlatform : MonoBehaviour
             m_lastDirection = newDrirction;
         m_moving = newDrirction;
       
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.GetComponent<PlayerMovement>() != null)
+        {
+            GameObject player = collision.gameObject;
+            m_PlayersTrapped.Add(player);
+            player.transform.parent = transform;
+
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if(m_PlayersTrapped.Contains(collision.gameObject))
+        {
+            GameObject player = collision.gameObject;
+            m_PlayersTrapped.Remove(player);
+            player.transform.parent = transform.parent;
+        }
     }
 
     private void OnDrawGizmos()
@@ -113,8 +121,8 @@ public class MovingPlatform : MonoBehaviour
 
         
 
-        Gizmos.DrawRay(transform.position, m_boxCenter);
-        Gizmos.DrawWireCube(transform.position + (Vector3)(m_boxCenter), m_boxSize);
+        //Gizmos.DrawRay(transform.position, m_boxCenter);
+        //Gizmos.DrawWireCube(transform.position + (Vector3)(m_boxCenter), m_boxSize);
     }
 }
 
