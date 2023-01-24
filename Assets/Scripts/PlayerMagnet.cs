@@ -30,7 +30,7 @@ public class PlayerMagnet : MonoBehaviour
 
             foreach (RaycastHit2D hit in hits)
             {
-                hit.transform.GetComponent<IsMagnetic>()?.isBeingMagnetic(transform.position,m_directionOfMagnet,transform.GetComponent<PlayerMovement>());                                  
+                hit.transform.GetComponent<IsMagnetic>()?.isBeingMagnetic(transform.position + (Vector3)(m_facingVector + m_magnetPowerLength),m_directionOfMagnet,transform.GetComponent<PlayerMovement>());                                  
             }
             
         }
