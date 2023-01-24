@@ -12,11 +12,15 @@ public class PlayerMagnet : MonoBehaviour
     [SerializeField] public directionOfMagnet m_directionOfMagnet;
     [FormerlySerializedAs("m_magnetPower")] public Vector2 m_magnetPowerLength;
     [SerializeField] Vector2 m_boxSize;
-    Vector2 m_facingVector = Vector2.right;
+    Vector2 m_facingVector = Vector2.one;
+    
+    [SerializeField]Vector3 m_handOffset;
+    Vector3 m_handCurrentOffset;
 
     private void Awake()
     {
-        m_magnetActive = false;   
+        m_magnetActive = false;
+        m_handCurrentOffset = m_handOffset;
     }
 
     private void FixedUpdate()
@@ -24,13 +28,13 @@ public class PlayerMagnet : MonoBehaviour
         if(m_magnetActive) 
         {
           
-            RaycastHit2D[] hits = Physics2D.BoxCastAll(transform.position + (Vector3)(m_facingVector + m_magnetPowerLength), m_boxSize, 0f, Vector2.right,0);
-           
+            RaycastHit2D[] hits = Physics2D.BoxCastAll(transform.position + (Vector3)(m_facingVector * m_magnetPowerLength), m_boxSize, 0f, Vector2.right,0);
 
 
+            //(Vector3)(m_facingVector + m_magnetPowerLength)
             foreach (RaycastHit2D hit in hits)
             {
-                hit.transform.GetComponent<IsMagnetic>()?.isBeingMagnetic(transform.position + (Vector3)(m_facingVector + m_magnetPowerLength),m_directionOfMagnet,transform.GetComponent<PlayerMovement>());                                  
+                hit.transform.GetComponent<IsMagnetic>()?.isBeingMagnetic(transform.position + m_handCurrentOffset ,m_directionOfMagnet,transform.GetComponent<PlayerMovement>());                                  
             }
             
         }
@@ -41,10 +45,12 @@ public class PlayerMagnet : MonoBehaviour
         switch (direction)
         {
             case FacingDirection.LEFT:
-                m_facingVector = -Vector2.right;
+                m_facingVector.x = -1;
+                m_handCurrentOffset = -m_handOffset;
                 break;
             case FacingDirection.RIGHT:
-                m_facingVector = Vector2.right;
+                m_facingVector.x = 1;
+                m_handCurrentOffset = m_handOffset;
                 break;
             default:
                 Debug.Log("ChangeDirection failed in player magnet");
@@ -80,9 +86,25 @@ public class PlayerMagnet : MonoBehaviour
                 Gizmos.color = Color.black;
                 break;
         }
-        Vector2 direction = transform.TransformDirection(m_facingVector + m_magnetPowerLength);
+
+        Vector2 direction = transform.TransformDirection(m_facingVector * m_magnetPowerLength);
         
         Gizmos.DrawRay(transform.position, direction);
-        Gizmos.DrawWireCube(transform.position + (Vector3)(m_facingVector + m_magnetPowerLength), m_boxSize);
+        Gizmos.DrawWireCube(transform.position + (Vector3)(m_facingVector * m_magnetPowerLength), m_boxSize);
+
+        switch (m_directionOfMagnet)
+        {
+            case directionOfMagnet.TOWARDS:
+                Gizmos.color = Color.yellow;
+                break;
+            case directionOfMagnet.AWAY:
+                Gizmos.color = Color.magenta;
+                break;
+            default:
+                Gizmos.color = Color.black;
+                break;
+        }
+
+        Gizmos.DrawLine(transform.position,transform.position + m_handCurrentOffset);
     }
 }
