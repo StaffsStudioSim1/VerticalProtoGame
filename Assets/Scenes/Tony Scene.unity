@@ -137,11 +137,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1099811130490215560, guid: 7c7782bf5ece7e1458cfdfef025a6968, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.5288384
+      value: -9.23
       objectReference: {fileID: 0}
     - target: {fileID: 1099811130490215560, guid: 7c7782bf5ece7e1458cfdfef025a6968, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.676424
+      value: -6.24
       objectReference: {fileID: 0}
     - target: {fileID: 1099811130490215560, guid: 7c7782bf5ece7e1458cfdfef025a6968, type: 3}
       propertyPath: m_LocalPosition.z
@@ -9357,6 +9357,14 @@ PrefabInstance:
     - target: {fileID: 7913504230214025882, guid: 89e27405338d02744a8d97e006b22b5b, type: 3}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7913504230214025882, guid: 89e27405338d02744a8d97e006b22b5b, type: 3}
+      propertyPath: m_SortingLayer
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7913504230214025882, guid: 89e27405338d02744a8d97e006b22b5b, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 226868409
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
