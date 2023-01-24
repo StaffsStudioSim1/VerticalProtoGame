@@ -360,7 +360,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_directionOfMagnet: 0
-  m_magnetPowerLength: {x: 2.08, y: 0}
+  m_magnetPowerLength: {x: 1.97, y: 0}
   m_boxSize: {x: 3, y: 7.5}
   m_handOffset: {x: 0.5, y: 0, z: 0}
 --- !u!61 &9064686051045901855

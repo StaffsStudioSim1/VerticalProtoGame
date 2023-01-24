@@ -14,15 +14,14 @@ public class MovingPlatform : MonoBehaviour
     [Tooltip("1 if the positons are in the middle of the tile, 1.5 if bounce at definitve end for a 3 tile width")]
     [SerializeField] Vector2 m_boundrys;
 
-    [Header("PlayerEntrapment")]
-    [SerializeField] Vector2 m_boxSize;
-    [SerializeField] Vector2 m_boxCenter;
+    [Header("PlayerEntrapment")] 
     [SerializeField] List<GameObject> m_PlayersTrapped;
 
     // Start is called before the first frame update
     void Start()
     {
         m_origin = transform.position;
+        
     }
 
     // Update is called once per frame
@@ -118,11 +117,6 @@ public class MovingPlatform : MonoBehaviour
 
 
         Gizmos.DrawLine(directionRight, directionLeft);
-
-        
-
-        //Gizmos.DrawRay(transform.position, m_boxCenter);
-        //Gizmos.DrawWireCube(transform.position + (Vector3)(m_boxCenter), m_boxSize);
     }
 }
 

@@ -162,7 +162,7 @@ MonoBehaviour:
   m_positionRight: {x: 3, y: 0}
   m_speed: 0.7
   m_boundrys: {x: 1, y: 0}
-  m_boxSize: {x: 3, y: 0.4}
+  m_boxSize: {x: 2.91, y: 0.4}
   m_boxCenter: {x: 0, y: 0.45}
   m_PlayersTrapped: []
 --- !u!61 &2282729189983763083
