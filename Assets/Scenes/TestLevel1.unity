@@ -2771,6 +2771,37 @@ TilemapCollider2D:
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0.00001
   m_UseDelaunayMesh: 0
+--- !u!1 &941104960 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2732120377154698140, guid: 76a0c9f84d40a624ab74fc041cc8d43b, type: 3}
+  m_PrefabInstance: {fileID: 2732120375639904018}
+  m_PrefabAsset: {fileID: 0}
+--- !u!61 &941104961
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 941104960}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 3, y: 1.2}
+  m_EdgeRadius: 0
 --- !u!114 &947019167 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1677029402428717994, guid: 89e27405338d02744a8d97e006b22b5b, type: 3}
