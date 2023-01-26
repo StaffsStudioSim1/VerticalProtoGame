@@ -19,6 +19,7 @@ public class PlayerMovement : MonoBehaviour, IsMagnetic
     [SerializeField]
     private Vector2 jumpForce;
 
+
     [SerializeField]
     [Min(0)]
     private float midAirControlDelay;
@@ -84,11 +85,20 @@ public class PlayerMovement : MonoBehaviour, IsMagnetic
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        //reset jump when player ground detector leaves the ground
-        jumpReset = true;
-        jumpTimer = 0f;
-        isJumping = false;
-        Debug.Log("jump reset");
+        Vector2 currentPos = new Vector2(transform.position.x, transform.position.y);
+        /* making the raycast not hit the player's own collider works, however removes the
+         forgiveness jump mechanic*/
+        //Vector2 currentPos = new Vector2(transform.position.x, transform.position.y - 1);
+        RaycastHit2D hit = Physics2D.Raycast(currentPos, Vector2.down, 1.0f);
+        Debug.DrawLine(transform.position, hit.point, Color.green);
+        if (hit.collider != null)
+        {
+            //reset jump when player ground detector leaves the ground
+            jumpReset = true;
+            jumpTimer = 0f;
+            isJumping = false;
+            Debug.Log("jump reset");
+        }
     }
 
     // Update is called once per frame
@@ -98,14 +108,14 @@ public class PlayerMovement : MonoBehaviour, IsMagnetic
         if (jumpReset == false)
         {
             jumpTimer += Time.deltaTime;
-            if (jumpTimer > midAirControlDelay) //delays movement until a certain part of the players jump after time has passed
-            {
-                movementEnabled = true;
-            }
-            else
-            {
-                movementEnabled = false;
-            }
+            /*            if (jumpTimer > midAirControlDelay) //delays movement until a certain part of the players jump after time has passed
+                        {
+                            movementEnabled = true;
+                        }
+                        else
+                        {
+                            movementEnabled = false;
+                        }*/
         }
     }
 
@@ -114,27 +124,42 @@ public class PlayerMovement : MonoBehaviour, IsMagnetic
         if (movementEnabled)
         {
             //accelerates in direction of pressed input
-            rb.AddForce(m_currentMove * moveSpeed);
-            if (rb.velocity.magnitude > m_topSpeed) //clamps movement to topspeed
+            if (rb.velocity.magnitude < m_topSpeed)
             {
-                rb.AddForce(-m_currentMove * moveSpeed);
+                rb.AddForce(m_currentMove * moveSpeed);
             }
+
+            //rb.velocity = new Vector2((m_currentMove.x * moveSpeed * Time.deltaTime), rb.velocity.y);
+
+            /*            if (rb.velocity.magnitude > m_topSpeed) //clamps movement to topspeed
+                        {
+                            rb.AddForce(m_currentMove * m_topSpeed);
+                        }*/
         }
 
         if (isJumping)
         {
             if (!Flipped)
             {
-                float currentVelocity = new();
-                currentVelocity = rb.velocity.y;
+                /*           float currentVelocity = new();
+                           currentVelocity = rb.velocity.y;
 
-                float tempJumpForce = new();
+                           float tempJumpForce = new();
 
-                tempJumpForce = jumpForce.y;
+                           tempJumpForce = jumpForce.y;
 
-                tempJumpForce += -currentVelocity;
+                           tempJumpForce += -currentVelocity;
 
-                rb.AddForce(jumpForce);
+                           rb.AddForce(jumpForce);*/
+
+                float currentVelocity = rb.velocity.y;
+
+                if (rb.velocity.y < jumpForce.y)
+                {
+                    rb.AddForce(jumpForce, ForceMode2D.Impulse);
+                    isJumping = false;
+                }
+
             }
             else
             {
@@ -152,13 +177,13 @@ public class PlayerMovement : MonoBehaviour, IsMagnetic
 
             //stops jump after adding jumpforce
             //if player is falling before they jump then this cancels out their velocity
-            isJumping = false;
+            //isJumping = false;
         }
     }
 
     public void isBeingMagnetic(Vector2 pushingPlayerPos, directionOfMagnet forceDirection, PlayerMovement player)
     {
-        if(player == this)
+        if (player == this)
         {
             return;
         }
